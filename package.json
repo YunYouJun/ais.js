@@ -1,0 +1,22 @@
+{
+  "name": "ais",
+  "version": "1.0.0",
+  "description": "船舶自动识别系统 (Automatic Identification System) 使用 js 构建 web 端。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YunYouJun/AIS.js.git"
+  },
+  "keywords": [
+    "AIS"
+  ],
+  "author": "YunYouJun",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/YunYouJun/AIS.js/issues"
+  },
+  "homepage": "https://github.com/YunYouJun/AIS.js#readme"
+}
