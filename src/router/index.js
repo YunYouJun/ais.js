@@ -14,6 +14,10 @@ export default new Router({
         default: Welcome,
         navbar: navbar
       }
+    },
+    {
+      path: '*',
+      redirect: '/'
     }
   ]
 })
