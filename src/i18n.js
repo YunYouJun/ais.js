@@ -9,13 +9,15 @@ Vue.use(VueI18n)
 const messages = {
   en: {
     message: {
-      hello: 'Welcome to AIS.js!'
+      hello: 'Welcome to AIS.js!',
+      UnderwayUsingEngine: 'underway using engine'
     },
     ...enLocale
   },
   zh: {
     message: {
-      hello: '欢迎使用 AIS.js !'
+      hello: '欢迎使用 AIS.js !',
+      UnderwayUsingEngine: '正在使用引擎'
     },
     ...zhLocale
   }
