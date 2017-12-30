@@ -1,14 +1,22 @@
 <template>
   <div id="app">
-    <router-view name="navbar"></router-view>
-    <img src="./assets/anchor.png">
-    <router-view />
+    <el-container>
+      <el-header>
+        <navbar></navbar>
+      </el-header>
+      <router-view name="welcome"></router-view>
+      <router-view name="main"></router-view>
+    </el-container>
   </div>
 </template>
 
 <script>
+import Navbar from './components/common/Navbar'
 export default {
-  name: 'app'
+  name: 'app',
+  components: {
+    Navbar
+  }
 }
 </script>
 
