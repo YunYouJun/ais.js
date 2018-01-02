@@ -7,7 +7,7 @@
       <el-header>
         <navbar></navbar>
       </el-header>
-      <welcome></welcome>
+      <router-view></router-view>
       <hr>
       <router-view name="main"></router-view>
     </el-container>
@@ -17,13 +17,11 @@
 
 <script>
 import Navbar from './components/common/Navbar'
-import Welcome from './components/Welcome'
 import Copyright from './components/common/Copyright'
 export default {
   name: 'app',
   components: {
     Navbar,
-    Welcome,
     Copyright
   }
 }

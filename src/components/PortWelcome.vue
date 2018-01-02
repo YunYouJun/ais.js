@@ -1,13 +1,12 @@
 <template>
   <el-row>
-    <img src="../assets/anchor.png">
-    <h1>{{ this.$t('message.hello') }}</h1>
+    <h1>{{ this.$t('message.SerialPort') }}</h1>
   </el-row>
 </template>
 
 <script>
   export default {
-    name: 'Welcome'
+    name: 'PortWelcome'
   }
 </script>
 

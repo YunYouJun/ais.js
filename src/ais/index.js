@@ -27,10 +27,11 @@ function divideAIS (text) {
 
 // AIS 校验函数
 function verifyAIS (text) {
-  if (text) {
-    return true
+  let frame = text.toString().split(',')
+  if (frame.length < 7) {
+    return false
   }
-  return false
+  return true
 }
 
 export default function (text) {
@@ -47,5 +48,6 @@ export default function (text) {
     // (AIS VHF data-link Own-vessel report) 含有本船动态信息
   }
   let info = decodeMessage(bitMessage)
+  info.text = text
   return info
 }

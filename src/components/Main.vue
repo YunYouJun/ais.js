@@ -9,54 +9,66 @@
     </el-row>
     <hr>
     <el-row>
-      <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="6">
-        <el-card class="box-card">
-          <div v-for="(value, key) in infos" :key="key" class="text item">
-            <el-tag>{{ value.name }}</el-tag>
-            <el-tag type="info">{{ value.info }}</el-tag>
-          </div>
-        </el-card>
-      </el-col>
-      <el-col :xs="24" :sm="24" :md="18" :lg="18" :xl="18">
-        <el-card class="box-card" :body-style="{ padding: '0px' }">
-          <map-location :location="location"></map-location>
-        </el-card>
-      </el-col>
+      <info-panel :infos="infos"></info-panel>
+      <map-location :infos="infos" @sourcetext="aistext"></map-location>
     </el-row>
   </div>
 </template>
 
 <script>
-import MapLocation from '../components/Map'
+import MapLocation from '../components/MapLocation'
+import InfoPanel from '../components/InfoPanel'
 import ais from '../ais'
 // let aisText = '!AIVDM,1,1,,B,16:=hkP0018eSa:AaN;cb`Kh0@QE,0*61'
 // let aivdm1 = '!AIVDM,1,1,,A,15Cgah00008LOnt>1Cf`s6NT00SU,0*3D'
-let aivdm2 = '!AIVDO,1,1,,,168rO000008;Mp:APith06RP0000,0*25'
+// let aivdm2 = '!AIVDO,1,1,,,168rO000008;Mp:APith06RP0000,0*25'
 // let text = '!AIVDM,1,1,,A,<68rO0IR>Wh0J8?EP@5>70,4*23'
-let aivdm = aivdm2
+// let aivdm = aivdm2
 
 export default {
   name: 'Main',
   components: {
-    MapLocation
+    MapLocation,
+    InfoPanel
   },
   data () {
     return {
       msg: this.$t('message.hello'),
-      input: aivdm,
-      infos: ais(aivdm),
-      location: ais(aivdm).Location.data
+      input: '',
+      infos: {
+        'Location': {
+          name: '解析信息',
+          data: '',
+          info: '暂无'
+        }
+      }
     }
   },
   watch: {
     input: function () {
-      this.infos = ais(this.input)
+      if (!ais(this.input)) {
+        this.openError()
+      } else {
+        this.infos = ais(this.input)
+        this.openSuccess()
+      }
+    }
+  },
+  methods: {
+    aistext (text) {
+      this.input = text
+    },
+    openSuccess () {
+      this.$message.success('AIS 报文解析成功~')
+    },
+    openError () {
+      this.$message.error('AIS 报文不符合规范哦~')
     }
   }
 }
 </script>
 
-<style scoped>
+<style>
 /* card */
 .text {
   font-size: 14px;
@@ -69,10 +81,6 @@ export default {
 .box-card {
   margin: 5px;
   text-align: left;
-}
-
-.el-card{
-  padding: 0px;
 }
 
 /* row */

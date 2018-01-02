@@ -10,14 +10,14 @@ const messages = {
   en: {
     message: {
       hello: 'Welcome to AIS.js!',
-      UnderwayUsingEngine: 'underway using engine'
+      SerialPort: 'Serial Port'
     },
     ...enLocale
   },
   zh: {
     message: {
       hello: '欢迎使用 AIS.js !',
-      UnderwayUsingEngine: '正在使用引擎'
+      SerialPort: '串口解析'
     },
     ...zhLocale
   }
