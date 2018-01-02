@@ -8,6 +8,13 @@ import App from './App'
 import router from './router'
 import i18n from './i18n'
 
+import AMap from 'vue-amap'
+Vue.use(AMap)
+AMap.initAMapApiLoader({
+  key: 'df562dc843cc3dd29efa5fd8f8029a62',
+  plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor']
+})
+
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 

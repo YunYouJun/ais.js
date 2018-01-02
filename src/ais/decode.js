@@ -1,6 +1,6 @@
 import num2char from './num2char.json'
 
-// 二进制转经纬度
+// 二进制转经纬度 (字母)
 function bit2coordinate (bitLongitude, bitLatitude) {
   let longitude = bit2degree(bitLongitude.slice(1), 'coordinate')
   let latitude = bit2degree(bitLatitude.slice(1), 'coordinate')
@@ -18,6 +18,24 @@ function bit2coordinate (bitLongitude, bitLatitude) {
     longitude,
     latitude
   }
+  return coordinate
+}
+
+// 二进制转经纬度 (地图解析用数据)
+function bit2MapCoordinate (bitLongitude, bitLatitude) {
+  let longitude = parseInt(bitLongitude, 2)
+  let latitude = parseInt(bitLatitude, 2)
+  if (bitLongitude.slice(0, 1) === '0') {
+    longitude = longitude / 10000 / 60
+  } else if (bitLongitude.slice(0, 1) === '1') {
+    longitude = -longitude / 10000 / 60
+  }
+  if (bitLatitude.slice(0, 1) === '0') {
+    latitude = +latitude / 10000 / 60
+  } else if (bitLatitude.slice(0, 1) === '1') {
+    latitude = -latitude / 10000 / 60
+  }
+  let coordinate = [longitude, latitude]
   return coordinate
 }
 
@@ -246,6 +264,7 @@ function positionReport (bitMessage) {
   let accuracyType = classifyAccuracy(accuracy)
 
   let coordinate = bit2coordinate(bitMessage.slice(61, 89), bitMessage.slice(89, 116)) // Longitude & Latitude in 1/10000 minutes
+  let coordinateData = bit2MapCoordinate(bitMessage.slice(61, 89), bitMessage.slice(89, 116))
   let coordinateInfo = coordinate.longitude + ' , ' + coordinate.latitude
 
   let cog = bit2degree(bitMessage.slice(116, 128), 'cog') // Course over ground 对地航向
@@ -304,7 +323,7 @@ function positionReport (bitMessage) {
     },
     'Location': {
       name: '坐标',
-      data: coordinate,
+      data: coordinateData,
       info: coordinateInfo
     },
     'COG': {

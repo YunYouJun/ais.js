@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="margin: 10px">
     <el-row>
       <el-col :span="24">
         <el-input v-model="input" placeholder="请输入 AIS 帧文本">
@@ -12,14 +12,14 @@
       <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="6">
         <el-card class="box-card">
           <div v-for="(value, key) in infos" :key="key" class="text item">
-            {{ '[ ' + value.name + ' ] : [ ' + value.info + ' ]' }}
+            <el-tag>{{ value.name }}</el-tag>
+            <el-tag type="info">{{ value.info }}</el-tag>
           </div>
         </el-card>
       </el-col>
       <el-col :xs="24" :sm="24" :md="18" :lg="18" :xl="18">
-        <el-card class="box-card">
-          <router-view name="map"></router-view>
-          <map-location></map-location>
+        <el-card class="box-card" :body-style="{ padding: '0px' }">
+          <map-location :location="location"></map-location>
         </el-card>
       </el-col>
     </el-row>
@@ -31,9 +31,9 @@ import MapLocation from '../components/Map'
 import ais from '../ais'
 // let aisText = '!AIVDM,1,1,,B,16:=hkP0018eSa:AaN;cb`Kh0@QE,0*61'
 // let aivdm1 = '!AIVDM,1,1,,A,15Cgah00008LOnt>1Cf`s6NT00SU,0*3D'
-// let aivdm2 = '!AIVDO,1,1,,,168rO000008;Mp:APith06RP0000,0*25'
-let text = '!AIVDM,1,1,,A,<68rO0IR>Wh0J8?EP@5>70,4*23'
-let aivdm = text
+let aivdm2 = '!AIVDO,1,1,,,168rO000008;Mp:APith06RP0000,0*25'
+// let text = '!AIVDM,1,1,,A,<68rO0IR>Wh0J8?EP@5>70,4*23'
+let aivdm = aivdm2
 
 export default {
   name: 'Main',
@@ -44,7 +44,8 @@ export default {
     return {
       msg: this.$t('message.hello'),
       input: aivdm,
-      infos: ais(aivdm)
+      infos: ais(aivdm),
+      location: ais(aivdm).Location.data
     }
   },
   watch: {
@@ -62,12 +63,17 @@ export default {
 }
 
 .item {
-  padding: 18px 0;
+  padding: 5px 0;
 }
 
 .box-card {
   margin: 5px;
-}s
+  text-align: left;
+}
+
+.el-card{
+  padding: 0px;
+}
 
 /* row */
 .el-row {

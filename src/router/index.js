@@ -13,7 +13,6 @@ export default new Router({
       name: 'Home',
       components: {
         default: Welcome,
-        welcome: Welcome,
         main: Main
       }
     },
