@@ -1,9 +1,16 @@
 <template>
   <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="6">
     <el-card class="box-card">
-      <div v-for="(value, key) in infos" :key="key" v-if="value.name" class="text item">
-        <el-tag>{{ value.name }}</el-tag>
-        <el-tag type="info">{{ value.info }}</el-tag>
+      <div v-if="infos">
+        <div v-for="(value, key) in infos" :key="key" v-if="value.name" class="text item">
+          <el-tag>{{ value.name }}</el-tag>
+          <el-tag type="info">{{ value.info }}</el-tag>
+        </div>
+      </div>
+      <div v-else>
+        <el-tag type="info" v-if="InfoVisible" closable :disable-transitions="false" @close="handleClose">
+          {{ this.$t('message.Nothing') }}
+        </el-tag>
       </div>
     </el-card>
   </el-col>  
@@ -15,7 +22,12 @@ export default {
   props: ['infos'],
   data: function () {
     return {
-
+      InfoVisible: true
+    }
+  },
+  methods: {
+    handleClose () {
+      this.InfoVisible = false
     }
   }
 }

@@ -1,7 +1,8 @@
 <template>
-  <el-row>
-    <h1>{{ this.$t('message.SerialPort') }}</h1>
-  </el-row>
+  <div></div>
+  <!-- <el-row> -->
+    <!-- <h1>{{ this.$t('message.SerialPort') }}</h1> -->
+  <!-- </el-row> -->
 </template>
 
 <script>

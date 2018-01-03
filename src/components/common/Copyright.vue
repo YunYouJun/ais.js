@@ -4,7 +4,7 @@
     <div class="ui container">
       <div class="ui stackable divided equal height stackable grid">
         <div class="column text-center">
-          <h4 class="ui header">AIS.JS - 船舶自动识别系统</h4>
+          <h4 class="ui header">{{ this.$t('message.AIS') }}</h4>
           <div class="ui link">
             <a class="item" href="https://github.com/YunYouJun/ais.js" target="_blank">
               <button class="ui circular black basic icon button" data-tooltip="GitHub 项目代码" data-inverted="">

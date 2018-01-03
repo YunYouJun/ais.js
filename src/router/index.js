@@ -3,7 +3,7 @@ import Router from 'vue-router'
 
 import Welcome from '@/components/Welcome'
 import PortWelcome from '@/components/PortWelcome'
-import Main from '@/components/Main'
+import SingleDecode from '@/components/SingleDecode'
 import SerialPort from '@/components/SerialPort'
 
 Vue.use(Router)
@@ -15,7 +15,7 @@ export default new Router({
       name: 'Home',
       components: {
         default: Welcome,
-        main: Main
+        main: SingleDecode
       }
     },
     {

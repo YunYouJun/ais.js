@@ -19,11 +19,10 @@
 import MapLocation from '../components/MapLocation'
 import InfoPanel from '../components/InfoPanel'
 import ais from '../ais'
-// let aisText = '!AIVDM,1,1,,B,16:=hkP0018eSa:AaN;cb`Kh0@QE,0*61'
+// let aivdm = '!AIVDM,1,1,,B,16:=hkP0018eSa:AaN;cb`Kh0@QE,0*61'
 // let aivdm1 = '!AIVDM,1,1,,A,15Cgah00008LOnt>1Cf`s6NT00SU,0*3D'
 // let aivdm2 = '!AIVDO,1,1,,,168rO000008;Mp:APith06RP0000,0*25'
-// let text = '!AIVDM,1,1,,A,<68rO0IR>Wh0J8?EP@5>70,4*23'
-// let aivdm = aivdm2
+// let aivdm3 = '!AIVDM,1,1,,A,<68rO0IR>Wh0J8?EP@5>70,4*23'
 
 export default {
   name: 'Main',
@@ -33,15 +32,8 @@ export default {
   },
   data () {
     return {
-      msg: this.$t('message.hello'),
       input: '',
-      infos: {
-        'Location': {
-          name: '解析信息',
-          data: '',
-          info: '暂无'
-        }
-      }
+      infos: ''
     }
   },
   watch: {
