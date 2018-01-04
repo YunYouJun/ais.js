@@ -117,16 +117,22 @@ export default {
       if (this.switch) {
         for (let i = 0; i < AISdata.length; i++) {
           let aisInfo = ais(AISdata[i].aisText)
-          if (aisInfo) {
-            AISdata[i].decodeStatus = 'success'
-            AISdata[i].messageType = aisInfo.MessageID.info
-            if (aisInfo.MessageID.data === 1 || aisInfo.MessageID.data === 2 || aisInfo.MessageID.data === 3) {
-              AISdata[i].decodeLocation = aisInfo.Location.info
-            } else {
-              AISdata[i].decodeLocation = '无'
+          try {
+            if (aisInfo) {
+              AISdata[i].decodeStatus = 'success'
+              AISdata[i].messageType = aisInfo.MessageID.info
+              if (aisInfo.MessageID.data === 1 || aisInfo.MessageID.data === 2 || aisInfo.MessageID.data === 3) {
+                AISdata[i].decodeLocation = aisInfo.Location.info
+              } else {
+                AISdata[i].decodeLocation = '无'
+              }
+              this.$emit('sourcetext', AISdata[i].aisText)
             }
+          } catch (e) {
+            console.log('该条报文为空！')
           }
         }
+
         this.OldAISdata = AISdata
         return AISdata
       } else {

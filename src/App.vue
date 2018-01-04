@@ -35,4 +35,7 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+.amap-demo {
+  height: 600px;
+}
 </style>

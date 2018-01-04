@@ -1,34 +1,42 @@
-// const SerialPort = require('serialport')
-// const portName = 'COM3'
-// const baudRate = 38400
+const SerialPort = require('serialport')
 const fs = require('fs')
+
+const portName = 'COM3'
+const baudRate = 38400
+
 let data = []
-// const port = new SerialPort(portName, {
-//   baudRate: baudRate
-// },
-//   function (err) {
-//     if (err) {
-//       return console.log('Error:', err.message)
-//     }
-//     let currentbuf
-//     let lastbuf = Buffer.from('')
-//     let buf = Buffer.from('')
-//     port.on('data', function (data) {
-//       currentbuf = Buffer.from(data, 'ascii')
-//       try {
-//         if (currentbuf.toString()[0] === '!' || currentbuf.toString()[0] === '$') {
-//           console.log('Data: ' + lastbuf.toString())
-//           buf.copy(currentbuf)
-//         } else {
-//           buf = Buffer.concat([lastbuf, currentbuf])
-//         }
-//       } catch (e) {
-//         console.log('Buffer Error!')
-//       }
-//       lastbuf.copy(buf)
-//     })
-//   }
-// )
+let currentbuf
+let lastbuf = Buffer.from('')
+let buf = Buffer.from('')
+
+const port = new SerialPort(portName, {
+  baudRate: baudRate
+},
+  function (err) {
+    if (err) {
+      return console.log('Error:', err.message)
+    }
+
+    port.on('data', function (data) {
+      currentbuf = Buffer.from(data, 'ascii')
+      try {
+        if (currentbuf.toString()[0] === '!' || currentbuf.toString()[0] === '$' || currentbuf.toString()[0] === '\r' || currentbuf.toString()[0] === '\n') {
+          let text = lastbuf.toString()
+          text = text.replace(/\n/, '')
+          text = text.replace(/\r/, '')
+          console.log('Data: ' + text)
+          saveAisText(text)
+          buf = currentbuf
+        } else {
+          buf = Buffer.concat([lastbuf, currentbuf])
+        }
+      } catch (e) {
+        console.log('Buffer Error!')
+      }
+      lastbuf = buf
+    })
+  }
+)
 
 function saveAisText (aisText) {
   // let today = new Date()
@@ -52,8 +60,8 @@ function saveAisText (aisText) {
   })
 }
 
-saveAisText('!AIVDM,1,1,,B,16:=hkP0018eSa:AaN;cb`Kh0@QE,0*61')
-saveAisText('!AIVDM,1,1,,A,15Cgah00008LOnt>1Cf`s6NT00SU,0*3D')
+// saveAisText('!AIVDM,1,1,,B,16:=hkP0018eSa:AaN;cb`Kh0@QE,0*61')
+// saveAisText('!AIVDM,1,1,,A,15Cgah00008LOnt>1Cf`s6NT00SU,0*3D')
+// // saveAisText('!AIVDO,1,1,,,168rO000008;Mp:APith06RP0000,0*25')
 // saveAisText('!AIVDO,1,1,,,168rO000008;Mp:APith06RP0000,0*25')
-// saveAisText('!AIVDO,1,1,,,168rO000008;Mp:APith06RP0000,0*25')
-saveAisText('!AIVDM,1,1,,A,<68rO0IR>Wh0J8?EP@5>70,4*23')
+// saveAisText('!AIVDM,1,1,,A,<68rO0IR>Wh0J8?EP@5>70,4*23')
