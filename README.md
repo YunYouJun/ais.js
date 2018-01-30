@@ -32,6 +32,7 @@ npm run build --report
 ## How to use
 
 `bash` 文件夹
+
 |文件名|描述|
 |--|--|
 |AIS.JS.sh | 启动网站后台服务器并自动打开浏览器至指定页面 |
