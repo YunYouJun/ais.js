@@ -7,6 +7,7 @@
 - Vue
 - 高德地图
 - node-serialport
+- [ais-json](https://github.com/YunYouJun/ais-json)
 
 ## Function
 
