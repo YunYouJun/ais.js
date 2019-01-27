@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "ais-json": "^0.1.0",
+    "element-theme-ink": "^1.0.0",
     "element-ui": "^2.2.1",
     "register-service-worker": "^1.5.2",
     "serialport": "^6.1.1",

@@ -3300,6 +3300,11 @@ electron-to-chromium@^1.3.103, electron-to-chromium@^1.3.47:
   resolved "http://registry.npm.taobao.org/electron-to-chromium/download/electron-to-chromium-1.3.108.tgz#2e79a6fcaa4b3e7c75abf871505bda8e268c910e"
   integrity sha1-Lnmm/KpLPnx1q/hxUFvajiaMkQ4=
 
+element-theme-ink@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/element-theme-ink/download/element-theme-ink-1.0.0.tgz#bedcee38e24d4efb52189a13e2abb60e57048b8c"
+  integrity sha1-vtzuOOJNTvtSGJoT4qu2DlcEi4w=
+
 element-ui@^2.2.1:
   version "2.5.1"
   resolved "http://registry.npm.taobao.org/element-ui/download/element-ui-2.5.1.tgz#1acf7374ba2a4e8252caad9af92774fd77ebb3b6"

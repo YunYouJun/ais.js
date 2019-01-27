@@ -9,29 +9,34 @@
     style="width: 100%"
   >
     <el-table-column type="index" align="left"> </el-table-column>
-    <el-table-column property="time" :label="label1" align="left" width="250">
+    <el-table-column
+      prop="time"
+      :label="$t('message.GetTime')"
+      align="left"
+      width="250"
+    >
       <template slot-scope="scope">
         <i class="el-icon-time"></i>
         <span style="margin-left: 10px">{{ scope.row.time }}</span>
       </template>
     </el-table-column>
     <el-table-column
-      property="aisText"
-      :label="label2"
+      prop="aisText"
+      :label="$t('message.AISMessage')"
       align="left"
       width="500"
     >
     </el-table-column>
     <el-table-column
-      property="messageType"
-      :label="label3"
+      prop="messageType"
+      :label="$t('message.MessageType')"
       align="left"
       width="130"
     >
     </el-table-column>
     <el-table-column
-      property="decodeStatus"
-      :label="label4"
+      prop="decodeStatus"
+      :label="$t('message.DecodeStatus')"
       align="left"
       width="120"
     >
@@ -40,8 +45,8 @@
       </template>
     </el-table-column>
     <el-table-column
-      property="decodeLocation"
-      :label="label5"
+      prop="decodeLocation"
+      :label="$t('message.DecodeLocation')"
       align="left"
       width="250"
     >
@@ -54,15 +59,15 @@
 </template>
 
 <script>
-// import AISdata from '@/assets/AisMessage/AIS.json'
-// import ais from 'ais-json'
+import aisData from '@/assets/AisMessage/AIS.json'
+import ais from 'ais-json'
 
 export default {
   name: 'AisTable',
-  props: ['switch'],
   data() {
     return {
-      OldAISdata: ''
+      aisData: aisData,
+      tableData: this.formatData(aisData)
     }
   },
   methods: {
@@ -87,55 +92,33 @@ export default {
       } else {
         return 'el-icon-close'
       }
+    },
+    formatData(aisData) {
+      for (let i = 0; i < aisData.length; i++) {
+        let aisInfo = ais(aisData[i].aisText)
+        let MessageID = [1, 2, 3]
+        try {
+          if (aisInfo) {
+            aisData[i].decodeStatus = 'success'
+            aisData[i].messageType = aisInfo.MessageID.info
+            if (MessageID.indexOf(aisInfo.MessageID.data) !== -1) {
+              aisData[i].decodeLocation = aisInfo.Location.info
+            } else {
+              aisData[i].decodeLocation = 'Null'
+            }
+            this.$emit('sourcetext', aisData[i].aisText)
+          }
+        } catch (e) {
+          this.$message.error('该条报文为空！')
+        }
+      }
+      return aisData
     }
   },
-  computed: {
-    label1: function() {
-      return this.$t('message.GetTime')
-    },
-    label2: function() {
-      return this.$t('message.AISMessage')
-    },
-    label3: function() {
-      return this.$t('message.MessageType')
-    },
-    label4: function() {
-      return this.$t('message.DecodeStatus')
-    },
-    label5: function() {
-      return this.$t('message.DecodeLocation')
+  watch: {
+    aisData(data) {
+      this.tableData = this.formatData(data)
     }
-    // ,
-    // tableData: function() {
-    //   if (this.switch) {
-    //     for (let i = 0; i < AISdata.length; i++) {
-    //       let aisInfo = ais(AISdata[i].aisText)
-    //       try {
-    //         if (aisInfo) {
-    //           AISdata[i].decodeStatus = 'success'
-    //           AISdata[i].messageType = aisInfo.MessageID.info
-    //           if (
-    //             aisInfo.MessageID.data === 1 ||
-    //             aisInfo.MessageID.data === 2 ||
-    //             aisInfo.MessageID.data === 3
-    //           ) {
-    //             AISdata[i].decodeLocation = aisInfo.Location.info
-    //           } else {
-    //             AISdata[i].decodeLocation = '无'
-    //           }
-    //           this.$emit('sourcetext', AISdata[i].aisText)
-    //         }
-    //       } catch (e) {
-    //         console.log('该条报文为空！')
-    //       }
-    //     }
-
-    //     this.OldAISdata = AISdata
-    //     return AISdata
-    //   } else {
-    //     return this.OldAISdata
-    //   }
-    // }
   }
 }
 </script>

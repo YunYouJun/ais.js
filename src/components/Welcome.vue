@@ -1,6 +1,6 @@
 <template>
   <el-row>
-    <img src="../assets/anchor.png" />
+    <img src="@/assets/anchor.png" />
     <h1>{{ this.$t('message.hello') }}</h1>
   </el-row>
 </template>

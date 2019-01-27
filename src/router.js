@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
 import Home from '@/views/Home.vue'
-import SerialPort from '@/components/SerialPort'
+import SerialPort from '@/views/SerialPort'
 
 Vue.use(Router)
 

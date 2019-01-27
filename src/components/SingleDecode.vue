@@ -2,8 +2,12 @@
   <div style="margin: 10px">
     <el-row>
       <el-col :span="24">
-        <el-input v-model="input" placeholder="请输入 AIS 帧文本">
-          <el-button slot="append" icon="el-icon-search"></el-button>
+        <el-input 
+          v-model="input" 
+          :placeholder="$t('placeholder.InputAIS')" 
+          @keyup.native.enter="decodeAis" 
+          clearable>
+          <el-button slot="append" icon="el-icon-search" @click="decodeAis"></el-button>
         </el-input>
       </el-col>
     </el-row>
@@ -36,25 +40,24 @@ export default {
       infos: ''
     }
   },
-  watch: {
-    input: function() {
-      if (!ais(this.input)) {
-        this.openError()
-      } else {
-        this.infos = ais(this.input)
-        this.openSuccess()
-      }
-    }
-  },
   methods: {
     aistext(text) {
       this.input = text
+      this.decodeAis()
     },
     openSuccess() {
       this.$message.success('AIS 报文解析成功~')
     },
     openError() {
       this.$message.error('AIS 报文不符合规范哦~')
+    },
+    decodeAis() {
+      if (!ais(this.input)) {
+        this.openError()
+      } else {
+        this.infos = ais(this.input)
+        this.openSuccess()
+      }
     }
   }
 }

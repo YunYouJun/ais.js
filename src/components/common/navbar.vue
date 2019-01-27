@@ -6,42 +6,25 @@
     mode="horizontal"
   >
     <el-menu-item index="/"
-      ><img width="20px" src="../../assets/anchor.png"
+      ><img width="20px" src="@/assets/anchor.png"
     /></el-menu-item>
     <el-menu-item index="/serialport" :router="true">
       <span><i class="el-icon-location"></i></span>
       <span>{{ this.$t('message.SerialPort') }}</span>
     </el-menu-item>
-    <el-submenu index="lang" class="lang">
-      <template slot="title">
-        <span><i class="el-icon-refresh"></i></span>
-        <span>{{ lang }}</span>
-      </template>
-      <el-menu-item index="" v-on:click="changeZh">中文</el-menu-item>
-      <el-menu-item index="" v-on:click="changeEn">English</el-menu-item>
-    </el-submenu>
+    <div class="right-menu">
+      <lang-select class="right-menu-item"></lang-select>
+    </div>
   </el-menu>
 </template>
 
 <script>
-import VueI18n from '../../i18n'
+import LangSelect from '@/components/common/LangSelect'
 
 export default {
   name: 'Navbar',
-  data() {
-    return {
-      lang: '中文'
-    }
-  },
-  methods: {
-    changeEn() {
-      VueI18n.locale = 'en'
-      this.lang = 'English'
-    },
-    changeZh() {
-      VueI18n.locale = 'zh'
-      this.lang = '中文'
-    }
+  components: {
+    LangSelect
   },
   computed: {
     activeMenuIndex() {
@@ -51,8 +34,17 @@ export default {
 }
 </script>
 
-<style>
-.el-submenu__title {
-  border-bottom-color: transparent !important ;
+<style lang="scss" scoped>
+.right-menu {
+  float: right;
+  height: 100%;
+  line-height: 60px;
+  &:focus {
+    outline: none;
+  }
+  .right-menu-item {
+    display: inline-block;
+    margin: 0 8px;
+  }
 }
 </style>

@@ -3,7 +3,7 @@
     <div class="amap-wrapper">
       <el-amap class="amap-box" :vid="'amap-vue'"></el-amap>
     </div>
-    <navbar></navbar>
+    <navbar />
     <router-view />
     <hr />
     <router-view name="main"></router-view>

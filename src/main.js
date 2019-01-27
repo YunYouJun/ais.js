@@ -5,11 +5,14 @@ import store from './store'
 import './registerServiceWorker'
 
 import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
+// import 'element-ui/lib/theme-chalk/index.css'
+import 'element-theme-ink'
 import i18n from './i18n'
 import AMap from 'vue-amap'
+
+Vue.config.productionTip = false
+
 Vue.use(AMap)
-Vue.use(ElementUI)
 
 AMap.initAMapApiLoader({
   key: 'df562dc843cc3dd29efa5fd8f8029a62',
@@ -25,7 +28,9 @@ AMap.initAMapApiLoader({
   ]
 })
 
-Vue.config.productionTip = false
+Vue.use(ElementUI, {
+  i18n: (key, value) => i18n.t(key, value)
+})
 
 new Vue({
   i18n,

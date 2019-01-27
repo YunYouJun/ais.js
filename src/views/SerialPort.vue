@@ -1,9 +1,9 @@
 <template>
   <div style="margin: 10px;">
-    <ais-table :switch="formInline.switch" @sourcetext="aistext"></ais-table>
+    <ais-table @sourcetext="aistext"></ais-table>
     <br />
     <el-form :inline="true" :model="formInline">
-      <el-form-item :label="label1">
+      <el-form-item :label="$t('message.GetAIS')">
         <el-switch
           v-model="formInline.switch"
           active-color="#13ce66"
@@ -11,14 +11,14 @@
         >
         </el-switch>
       </el-form-item>
-      <el-form-item :label="label2">
+      <el-form-item :label="$t('message.PortName')">
         <el-input
           v-model="formInline.portName"
           placeholder="端口名"
           :disabled="true"
         ></el-input>
       </el-form-item>
-      <el-form-item :label="label3">
+      <el-form-item :label="$t('message.BaudRate')">
         <el-input
           v-model="formInline.baudRate"
           placeholder="波特率"
@@ -26,7 +26,7 @@
         ></el-input>
       </el-form-item>
     </el-form>
-    <el-input placeholder="请选中报文" v-model="input">
+    <el-input placeholder="请选中报文" v-model="input" disabled="">
       <template slot="prepend">{{ this.$t('message.CurrentAIS') }}</template>
     </el-input>
     <hr />
@@ -78,47 +78,11 @@ export default {
       this.$message.success('AIS 报文解析成功~')
     },
     openError() {
-      this.$message.error('AIS 报文不符合规范哦~')
-    }
-  },
-  computed: {
-    label1: function() {
-      return this.$t('message.GetAIS')
-    },
-    label2: function() {
-      return this.$t('message.PortName')
-    },
-    label3: function() {
-      return this.$t('message.BaudRate')
-    },
-    label4: function() {
-      return this.$t('message.CurrentAIS')
+      this.$message.error('AIS 报文不符合规范~')
     }
   }
 }
 </script>
 
 <style>
-/* card */
-.text {
-  font-size: 14px;
-}
-
-.item {
-  padding: 5px 0;
-}
-
-.box-card {
-  margin: 5px;
-  text-align: left;
-}
-
-/* row */
-.el-row {
-  margin-bottom: 20px;
-}
-
-.el-row:last-child {
-  margin-bottom: 0;
-}
 </style>

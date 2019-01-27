@@ -40,3 +40,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.el-tag + .el-tag {
+  margin-left: 10px;
+}
+</style>
