@@ -6,18 +6,10 @@
     max-height="200"
     highlight-current-row
     @current-change="handleCurrentChange"
-    style="width: 100%">
-    <el-table-column
-      type="index"
-      align="left"
-    >
-    </el-table-column>
-    <el-table-column
-      property="time"
-      :label="label1"
-      align="left"
-      width="250"
-    >
+    style="width: 100%"
+  >
+    <el-table-column type="index" align="left"> </el-table-column>
+    <el-table-column property="time" :label="label1" align="left" width="250">
       <template slot-scope="scope">
         <i class="el-icon-time"></i>
         <span style="margin-left: 10px">{{ scope.row.time }}</span>
@@ -62,26 +54,26 @@
 </template>
 
 <script>
-import AISdata from '../assets/AisMessage/AIS.json'
-import ais from '../ais'
+// import AISdata from '@/assets/AisMessage/AIS.json'
+// import ais from 'ais-json'
 
 export default {
   name: 'AisTable',
   props: ['switch'],
-  data () {
+  data() {
     return {
       OldAISdata: ''
     }
   },
   methods: {
-    setCurrent (row) {
+    setCurrent(row) {
       this.$refs.singleTable.setCurrentRow(row)
     },
-    handleCurrentChange (val) {
+    handleCurrentChange(val) {
       this.currentRow = val
       this.$emit('sourcetext', val.aisText)
     },
-    tableRowClassName ({row, rowIndex}) {
+    tableRowClassName({ row }) {
       if (row.decodeStatus === 'fail') {
         return 'warning-row'
       } else if (row.decodeStatus === 'success') {
@@ -89,7 +81,7 @@ export default {
       }
       return ''
     },
-    displayStatus (decodeStatus) {
+    displayStatus(decodeStatus) {
       if (decodeStatus === 'success') {
         return 'el-icon-check'
       } else {
@@ -98,57 +90,62 @@ export default {
     }
   },
   computed: {
-    label1: function () {
+    label1: function() {
       return this.$t('message.GetTime')
     },
-    label2: function () {
+    label2: function() {
       return this.$t('message.AISMessage')
     },
-    label3: function () {
+    label3: function() {
       return this.$t('message.MessageType')
     },
-    label4: function () {
+    label4: function() {
       return this.$t('message.DecodeStatus')
     },
-    label5: function () {
+    label5: function() {
       return this.$t('message.DecodeLocation')
-    },
-    tableData: function () {
-      if (this.switch) {
-        for (let i = 0; i < AISdata.length; i++) {
-          let aisInfo = ais(AISdata[i].aisText)
-          try {
-            if (aisInfo) {
-              AISdata[i].decodeStatus = 'success'
-              AISdata[i].messageType = aisInfo.MessageID.info
-              if (aisInfo.MessageID.data === 1 || aisInfo.MessageID.data === 2 || aisInfo.MessageID.data === 3) {
-                AISdata[i].decodeLocation = aisInfo.Location.info
-              } else {
-                AISdata[i].decodeLocation = '无'
-              }
-              this.$emit('sourcetext', AISdata[i].aisText)
-            }
-          } catch (e) {
-            console.log('该条报文为空！')
-          }
-        }
-
-        this.OldAISdata = AISdata
-        return AISdata
-      } else {
-        return this.OldAISdata
-      }
     }
+    // ,
+    // tableData: function() {
+    //   if (this.switch) {
+    //     for (let i = 0; i < AISdata.length; i++) {
+    //       let aisInfo = ais(AISdata[i].aisText)
+    //       try {
+    //         if (aisInfo) {
+    //           AISdata[i].decodeStatus = 'success'
+    //           AISdata[i].messageType = aisInfo.MessageID.info
+    //           if (
+    //             aisInfo.MessageID.data === 1 ||
+    //             aisInfo.MessageID.data === 2 ||
+    //             aisInfo.MessageID.data === 3
+    //           ) {
+    //             AISdata[i].decodeLocation = aisInfo.Location.info
+    //           } else {
+    //             AISdata[i].decodeLocation = '无'
+    //           }
+    //           this.$emit('sourcetext', AISdata[i].aisText)
+    //         }
+    //       } catch (e) {
+    //         console.log('该条报文为空！')
+    //       }
+    //     }
+
+    //     this.OldAISdata = AISdata
+    //     return AISdata
+    //   } else {
+    //     return this.OldAISdata
+    //   }
+    // }
   }
 }
 </script>
 
 <style>
 .el-icon-check {
-  color: #67C23A;
+  color: #67c23a;
 }
 .el-icon-close {
-  color: #F56C6C;
+  color: #f56c6c;
 }
 
 .el-table .warning-row {

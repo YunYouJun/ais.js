@@ -57,4 +57,6 @@ aisInfo = ais(aisText)
 
 ## Intend
 
-npm 的 ais.js 名称已被占用，之后可能会改名并将解析包分离打包上传至 npm。
+- [ais-json](https://github.com/YunYouJun/ais-json) simplify & i18n
+- apply for domain: [ais.js.org](https://ais.js.org)
+- [i18n]

@@ -2,8 +2,23 @@
   <el-col :xs="24" :sm="24" :md="18" :lg="18" :xl="18">
     <el-card class="box-card" :body-style="{ padding: '0px' }">
       <div class="amap-page-container">
-        <el-amap vid="amapDemo" :scrollWheel="scrollWheel" :plugin="plugin" :zoom="zoom" :center="center" :mapStyle="mapStyle" class="amap-demo">
-          <el-amap-marker :key="index" v-for="(marker, index) in markers" :events="marker.events" :position="marker.position" :vid="index" :icon="marker.icon">
+        <el-amap
+          vid="amapDemo"
+          :scrollWheel="scrollWheel"
+          :plugin="plugin"
+          :zoom="zoom"
+          :center="center"
+          :mapStyle="mapStyle"
+          class="amap-demo"
+        >
+          <el-amap-marker
+            :key="index"
+            v-for="(marker, index) in markers"
+            :events="marker.events"
+            :position="marker.position"
+            :vid="index"
+            :icon="marker.icon"
+          >
           </el-amap-marker>
         </el-amap>
       </div>
@@ -17,7 +32,7 @@ let amapManager = new VueAMap.AMapManager()
 export default {
   name: 'amap-page',
   props: ['infos'],
-  data: function () {
+  data: function() {
     return {
       amapManager,
       zoom: 12,
@@ -32,7 +47,7 @@ export default {
         {
           pName: 'Scale',
           events: {
-            init (instance) {
+            init(instance) {
               console.log(instance)
             }
           }
@@ -40,7 +55,7 @@ export default {
         {
           pName: 'ToolBar',
           events: {
-            init (instance) {
+            init(instance) {
               console.log(instance)
             }
           }
@@ -48,7 +63,7 @@ export default {
       ]
     }
   },
-  mounted () {
+  mounted() {
     try {
       this.infos.Location.data = [121.59996, 31.197646]
       this.center = this.infos.Location.data
@@ -57,7 +72,7 @@ export default {
     }
   },
   watch: {
-    infos: function () {
+    infos: function() {
       try {
         this.addMarker()
       } catch (e) {
@@ -66,13 +81,13 @@ export default {
     }
   },
   methods: {
-    getMap () {
+    getMap() {
       // amap vue component
       console.log(amapManager._componentMap)
       // gaode map instance
       console.log(amapManager._map)
     },
-    addMarker () {
+    addMarker() {
       let self = this
       let num = self.i
 
@@ -84,16 +99,14 @@ export default {
       this.center = this.infos.Location.data
 
       if (!locationIsNull) {
-        self.markerInfo.push(
-          self.infos
-        )
+        self.markerInfo.push(self.infos)
         self.i = self.i + 1
         self.markers.push({
           id: self.i,
           position: this.infos.Location.data,
           icon: '../../src/assets/smallshipLocation.png',
           events: {
-            click () {
+            click() {
               // console.log(this.markerInfo[self.i - 1].text)
               self.$nextTick(() => {
                 let text = self.markerInfo[num].text

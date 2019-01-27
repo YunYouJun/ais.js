@@ -7,7 +7,7 @@
         </el-input>
       </el-col>
     </el-row>
-    <hr>
+    <hr />
     <el-row>
       <info-panel :infos="infos"></info-panel>
       <map-location :infos="infos" @sourcetext="aistext"></map-location>
@@ -18,7 +18,7 @@
 <script>
 import MapLocation from '../components/MapLocation'
 import InfoPanel from '../components/InfoPanel'
-import ais from '../ais'
+import ais from 'ais-json'
 // let aivdm = '!AIVDM,1,1,,B,16:=hkP0018eSa:AaN;cb`Kh0@QE,0*61'
 // let aivdm1 = '!AIVDM,1,1,,A,15Cgah00008LOnt>1Cf`s6NT00SU,0*3D'
 // let aivdm2 = '!AIVDO,1,1,,,168rO000008;Mp:APith06RP0000,0*25'
@@ -30,14 +30,14 @@ export default {
     MapLocation,
     InfoPanel
   },
-  data () {
+  data() {
     return {
       input: '',
       infos: ''
     }
   },
   watch: {
-    input: function () {
+    input: function() {
       if (!ais(this.input)) {
         this.openError()
       } else {
@@ -47,13 +47,13 @@ export default {
     }
   },
   methods: {
-    aistext (text) {
+    aistext(text) {
       this.input = text
     },
-    openSuccess () {
+    openSuccess() {
       this.$message.success('AIS 报文解析成功~')
     },
-    openError () {
+    openError() {
       this.$message.error('AIS 报文不符合规范哦~')
     }
   }
@@ -84,4 +84,3 @@ export default {
   margin-bottom: 0;
 }
 </style>
-

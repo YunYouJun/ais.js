@@ -1,6 +1,13 @@
 <template>
-  <el-menu router :default-active="activeMenuIndex" class="el-menu-demo" mode="horizontal" >
-    <el-menu-item index="/"><img width="20px" src="../../assets/anchor.png"></el-menu-item>
+  <el-menu
+    router
+    :default-active="activeMenuIndex"
+    class="el-menu-demo"
+    mode="horizontal"
+  >
+    <el-menu-item index="/"
+      ><img width="20px" src="../../assets/anchor.png"
+    /></el-menu-item>
     <el-menu-item index="/serialport" :router="true">
       <span><i class="el-icon-location"></i></span>
       <span>{{ this.$t('message.SerialPort') }}</span>
@@ -21,23 +28,23 @@ import VueI18n from '../../i18n'
 
 export default {
   name: 'Navbar',
-  data () {
+  data() {
     return {
       lang: '中文'
     }
   },
   methods: {
-    changeEn () {
+    changeEn() {
       VueI18n.locale = 'en'
       this.lang = 'English'
     },
-    changeZh () {
+    changeZh() {
       VueI18n.locale = 'zh'
       this.lang = '中文'
     }
   },
   computed: {
-    activeMenuIndex () {
+    activeMenuIndex() {
       return this.$route.path
     }
   }
@@ -46,7 +53,6 @@ export default {
 
 <style>
 .el-submenu__title {
-  border-bottom-color: transparent ! important ;
+  border-bottom-color: transparent !important ;
 }
 </style>
-

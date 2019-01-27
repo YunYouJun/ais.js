@@ -1,18 +1,19 @@
 <template>
   <el-row>
-    <img src="../assets/anchor.png">
+    <img src="../assets/anchor.png" />
     <h1>{{ this.$t('message.hello') }}</h1>
   </el-row>
 </template>
 
 <script>
-  export default {
-    name: 'Welcome'
-  }
+export default {
+  name: 'Welcome'
+}
 </script>
 
 <style>
-h1, h2 {
+h1,
+h2 {
   font-weight: normal;
 }
 
