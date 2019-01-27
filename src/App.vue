@@ -5,8 +5,6 @@
     </div>
     <navbar />
     <router-view />
-    <hr />
-    <router-view name="main"></router-view>
     <!-- <vue-about-me :copyright="copyright"></vue-about-me> -->
   </div>
 </template>

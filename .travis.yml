@@ -2,15 +2,19 @@ language: node_js
 node_js:
   - lts/*
 
+cache:
+  directories:
+    - "node_modules"
+
 branches:
   only:
   - master
 
 install:
-  - yarn install
+  - npm install
 
 script:
-  - yarn build
+  - npm run build
 
 deploy:
   provider: pages
