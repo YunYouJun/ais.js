@@ -2,12 +2,17 @@
   <div style="margin: 10px">
     <el-row>
       <el-col :span="24">
-        <el-input 
-          v-model="input" 
-          :placeholder="$t('placeholder.InputAIS')" 
-          @keyup.native.enter="decodeAis" 
-          clearable>
-          <el-button slot="append" icon="el-icon-search" @click="decodeAis"></el-button>
+        <el-input
+          v-model="input"
+          :placeholder="$t('placeholder.InputAIS')"
+          @keyup.native.enter="decodeAis"
+          clearable
+        >
+          <el-button
+            slot="append"
+            icon="el-icon-search"
+            @click="decodeAis"
+          ></el-button>
         </el-input>
       </el-col>
     </el-row>
