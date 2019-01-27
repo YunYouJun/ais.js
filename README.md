@@ -1,5 +1,7 @@
 # ais.js
 
+[![Build Status](https://travis-ci.com/YunYouJun/ais.js.svg?branch=master)](https://travis-ci.com/YunYouJun/ais.js)
+
 > 船舶自动识别系统 (Automatic Identification System) 使用 js 构建 web 端。
 
 ## Base on
@@ -45,18 +47,11 @@ npm run build --report
 
 ### AIS 解析包使用方法
 
-文件所在路径：`/src/ais`
+解析为 Json 对象返回
 
-```
-import ais from '../ais'
-aisInfo = ais(aisText)
-```
-
-`aisInfo` 为解析获得信息，以 `json` 对象形式返回；
-`aisText` 为需要解析的 AIS 文本。
+参见 [ais-json](https://github.com/YunYouJun/ais-json)
 
 ## Intend
 
 - [ais-json](https://github.com/YunYouJun/ais-json) simplify & i18n
 - apply for domain: [ais.js.org](https://ais.js.org)
-- [i18n]

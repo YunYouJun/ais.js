@@ -12,10 +12,9 @@ branches:
 
 install:
   - yarn install
-  - yarn build
 
 script:
-  - echo "Skipping tests"
+  - yarn build
 
 deploy:
   provider: pages
