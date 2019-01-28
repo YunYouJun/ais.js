@@ -10,9 +10,12 @@ import 'element-theme-ink'
 import i18n from './i18n'
 import AMap from 'vue-amap'
 
+import VTooltip from 'v-tooltip'
+
 Vue.config.productionTip = false
 
 Vue.use(AMap)
+Vue.use(VTooltip)
 
 AMap.initAMapApiLoader({
   key: 'df562dc843cc3dd29efa5fd8f8029a62',

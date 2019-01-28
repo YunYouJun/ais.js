@@ -5,19 +5,19 @@
     </div>
     <navbar />
     <router-view />
-    <!-- <vue-about-me :copyright="copyright"></vue-about-me> -->
+    <vue-about-me :copyright="copyright"></vue-about-me>
   </div>
 </template>
 
 <script>
 import Navbar from '@/components/common/Navbar.vue'
-// import VueAboutMe from 'vue-about-me'
+import VueAboutMe from 'vue-about-me'
 
 export default {
   name: 'app',
   components: {
-    Navbar
-    // VueAboutMe
+    Navbar,
+    VueAboutMe
   },
   data() {
     return {
@@ -25,7 +25,8 @@ export default {
         name: 'AIS.JS',
         repoName: 'ais.js',
         author: 'YunYouJun',
-        logo: '#icon-ship-anchor'
+        logo: '#icon-ship-anchor',
+        color: '#000000'
       }
     }
   }
