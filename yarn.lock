@@ -9027,10 +9027,10 @@ vue-about-me@^0.2.2:
     v-tooltip "^2.0.0-rc.33"
     vue "^2.5.22"
 
-vue-amap@^0.4.5:
-  version "0.4.5"
-  resolved "https://registry.yarnpkg.com/vue-amap/-/vue-amap-0.4.5.tgz#214330811ddd449958c11d2e15f312baa8c627cb"
-  integrity sha512-hvzBlWacfZUGyW/VOVQ6Z6b0q2xLNBOyrr6/HTQaYUSHGtAWEoABnJFLrK1aLzExAmMkaT7d0spfcplAt76SAw==
+vue-amap@^0.5.8:
+  version "0.5.8"
+  resolved "http://registry.npm.taobao.org/vue-amap/download/vue-amap-0.5.8.tgz#8d866e39c037b31c85ff7ddc58fcb5aef03c3b6c"
+  integrity sha1-jYZuOcA3sxyF/33cWPy1rvA8O2w=
   dependencies:
     uppercamelcase "^1.1.0"
 

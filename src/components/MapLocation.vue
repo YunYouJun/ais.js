@@ -3,13 +3,12 @@
     <el-card class="box-card" :body-style="{ padding: '0px' }">
       <div class="amap-page-container">
         <el-amap
-          vid="amapDemo"
+          vid="amap"
           :scrollWheel="scrollWheel"
           :plugin="plugin"
-          :zoom="zoom"
           :center="center"
           :mapStyle="mapStyle"
-          class="amap-demo"
+          class="amap"
         >
           <el-amap-marker
             :key="index"
@@ -27,18 +26,15 @@
 </template>
 
 <script>
-import VueAMap from 'vue-amap'
-let amapManager = new VueAMap.AMapManager()
 export default {
   name: 'amap-page',
   props: ['infos'],
   data: function() {
     return {
-      amapManager,
-      zoom: 12,
       center: [],
-      scrollWheel: false,
-      mapStyle: 'light',
+      scrollWheel: true,
+      lang: 'zh_cn',
+      mapStyle: 'normal',
       markers: [],
       windows: [],
       markerInfo: [],
@@ -47,17 +43,17 @@ export default {
         {
           pName: 'Scale',
           events: {
-            init(instance) {
-              console.log(instance)
-            }
+            // init(instance) {
+            //   console.log(instance)
+            // }
           }
         },
         {
           pName: 'ToolBar',
           events: {
-            init(instance) {
-              console.log(instance)
-            }
+            // init(instance) {
+            //   console.log(instance)
+            // }
           }
         }
       ]
@@ -76,17 +72,11 @@ export default {
       try {
         this.addMarker()
       } catch (e) {
-        console.log('该报文没有位置信息！')
+        this.$message.error('该报文没有位置信息！')
       }
     }
   },
   methods: {
-    getMap() {
-      // amap vue component
-      console.log(amapManager._componentMap)
-      // gaode map instance
-      console.log(amapManager._map)
-    },
     addMarker() {
       let self = this
       let num = self.i
@@ -104,7 +94,7 @@ export default {
         self.markers.push({
           id: self.i,
           position: this.infos.Location.data,
-          icon: '../../src/assets/smallshipLocation.png',
+          icon: require('@/assets/smallshipLocation.png'),
           events: {
             click() {
               // console.log(this.markerInfo[self.i - 1].text)
@@ -123,7 +113,10 @@ export default {
 </script>
 
 <style>
-.amap-demo {
+.amap-page-container {
   height: 600px;
+}
+.amap {
+  height: 100%;
 }
 </style>

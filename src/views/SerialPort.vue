@@ -62,10 +62,10 @@ export default {
   },
   watch: {
     input: function() {
-      if (!ais(this.input)) {
+      this.infos = ais(this.input)
+      if (!this.infos) {
         this.openError()
       } else {
-        this.infos = ais(this.input)
         this.openSuccess()
       }
     }

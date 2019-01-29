@@ -3,21 +3,15 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import './registerServiceWorker'
-
 import ElementUI from 'element-ui'
 // import 'element-ui/lib/theme-chalk/index.css'
 import 'element-theme-ink'
 import i18n from './i18n'
-import AMap from 'vue-amap'
-
 import VTooltip from 'v-tooltip'
+import VueAMap from 'vue-amap'
 
-Vue.config.productionTip = false
-
-Vue.use(AMap)
-Vue.use(VTooltip)
-
-AMap.initAMapApiLoader({
+Vue.use(VueAMap)
+VueAMap.initAMapApiLoader({
   key: 'df562dc843cc3dd29efa5fd8f8029a62',
   plugin: [
     'AMap.Autocomplete',
@@ -28,12 +22,16 @@ AMap.initAMapApiLoader({
     'AMap.MapType',
     'AMap.PolyEditor',
     'AMap.CircleEditor'
-  ]
+  ],
+  v: '1.4.4'
 })
 
+Vue.use(VTooltip)
 Vue.use(ElementUI, {
   i18n: (key, value) => i18n.t(key, value)
 })
+
+Vue.config.productionTip = false
 
 new Vue({
   i18n,
