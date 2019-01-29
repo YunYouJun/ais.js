@@ -3,20 +3,20 @@
     <div class="amap-wrapper">
       <el-amap class="amap-box" :vid="'amap-vue'"></el-amap>
     </div>
-    <navbar />
+    <!-- <navbar /> -->
     <router-view />
     <vue-about-me :copyright="copyright"></vue-about-me>
   </div>
 </template>
 
 <script>
-import Navbar from './components/common/Navbar.vue'
+// import Navbar from '@/components/Navbar.vue'
 import VueAboutMe from 'vue-about-me'
 
 export default {
   name: 'app',
   components: {
-    Navbar,
+    // Navbar,
     VueAboutMe
   },
   data() {
