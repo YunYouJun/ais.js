@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import LangSelect from '@/components/common/LangSelect'
+import LangSelect from '../../components/common/LangSelect.vue'
 
 export default {
   name: 'Navbar',
