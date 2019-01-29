@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import Welcome from '../components/Welcome.vue'
-import SingleDecode from '../components/SingleDecode.vue'
+import Welcome from '@/components/Welcome.vue'
+import SingleDecode from '@/components/SingleDecode.vue'
 
 export default {
   name: 'home',

@@ -25,8 +25,8 @@
 </template>
 
 <script>
-import MapLocation from '../components/MapLocation'
-import InfoPanel from '../components/InfoPanel'
+import MapLocation from '@/components/MapLocation'
+import InfoPanel from '@/components/InfoPanel'
 import ais from 'ais-json'
 // let aivdm = '!AIVDM,1,1,,B,16:=hkP0018eSa:AaN;cb`Kh0@QE,0*61'
 // let aivdm1 = '!AIVDM,1,1,,A,15Cgah00008LOnt>1Cf`s6NT00SU,0*3D'
